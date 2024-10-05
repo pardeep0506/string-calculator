@@ -1,37 +1,11 @@
-import React, { useState } from 'react';
-import './App.css';
-import {add} from "./utlis/add";
+import React from 'react';
+import StringCalculator from "./pages/StringCalculator";
 
-const StringCalculator: React.FC = () => {
-    const [input, setInput] = useState<string>("");
-    const [result, setResult] = useState<number | string>("");
-
-    const handleCalculate = () => {
-        try {
-            const sum = add(input);  // Use the add function from utils.ts
-            setResult(sum);
-        } catch (error) {
-            setResult(error instanceof Error ? error.message : "An error occurred");
-        }
-    };
+const App: React.FC = () => {
 
     return (
-        <div className="calculator-container">
-            <h1>String Calculator</h1>
-            <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Enter numbers"
-            />
-            <button onClick={handleCalculate}>Calculate</button>
-            {result !== null && (
-                <p className={typeof result === "number" ? "result" : "error"}>
-                    Result: {result}
-                </p>
-            )}
-        </div>
+        <StringCalculator />
     );
 };
 
-export default StringCalculator;
+export default App;
