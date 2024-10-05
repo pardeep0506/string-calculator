@@ -1,7 +1,7 @@
 export function add(numbers: string): number {
     if (numbers === "") return 0;
 
-    let delimiter = ',';  // Default delimiters: comma 
+    let delimiter = /,|\\n/;
 
 
     const numArray = numbers.split(delimiter).map(Number);
