@@ -3,13 +3,13 @@ import './style.css';
 import {add} from "../../utlis/add";
 
 
-const Index: React.FC = () => {
+const StringCalculator: React.FC = () => {
     const [input, setInput] = useState<string>("");
     const [result, setResult] = useState<number | string>("");
 
     const handleCalculate = () => {
         try {
-            const sum = add(input);  // Use the add function from utils.ts
+            const sum = add(input);
             setResult(sum);
         } catch (error) {
             setResult(error instanceof Error ? error.message : "An error occurred");
@@ -35,4 +35,4 @@ const Index: React.FC = () => {
     );
 };
 
-export default Index;
+export default StringCalculator;
