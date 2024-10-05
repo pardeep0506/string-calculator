@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import {add} from "./utlis/add";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const StringCalculator: React.FC = () => {
+    const [input, setInput] = useState<string>("");
+    const [result, setResult] = useState<number | string>("");
 
-export default App;
+    const handleCalculate = () => {
+        try {
+            const sum = add(input);  // Use the add function from utils.ts
+            setResult(sum);
+        } catch (error) {
+            setResult(error instanceof Error ? error.message : "An error occurred");
+        }
+    };
+
+    return (
+        <div className="calculator-container">
+            <h1>String Calculator</h1>
+            <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Enter numbers"
+            />
+            <button onClick={handleCalculate}>Calculate</button>
+            {result !== null && (
+                <p className={typeof result === "number" ? "result" : "error"}>
+                    Result: {result}
+                </p>
+            )}
+        </div>
+    );
+};
+
+export default StringCalculator;
