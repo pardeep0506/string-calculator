@@ -5,7 +5,7 @@ import {add} from "../../utlis/add";
 
 const StringCalculator: React.FC = () => {
     const [input, setInput] = useState<string>("");
-    const [result, setResult] = useState<number | string>("");
+    const [result, setResult] = useState<number | string | null>(null);
 
     const handleCalculate = () => {
         try {
